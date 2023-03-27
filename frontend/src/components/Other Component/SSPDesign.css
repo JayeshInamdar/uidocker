@@ -1,0 +1,26 @@
+.sixt-button {
+  color: #fff;
+  background-color: #ff5f00 !important;
+  border-color: #ff5f00 !important;
+  padding: 8px 20px;
+  border-radius: 5px;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+.card-body {
+  padding: 30px;
+}
+.card-align {
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 10px;
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #ebe6e6 !important;
+  text-align: center;
+  color: black;
+}
