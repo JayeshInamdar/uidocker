@@ -1,0 +1,79 @@
+/*variable "instance_count" {
+  description = "Number of Windows instances to create."
+  type        = number
+}
+
+
+variable "windows_ami_name" {
+  description = "Name of the Windows AMI to use for instances"
+  type        = string
+}
+
+variable "instance_type" {
+  description = "Instance type for Windows instances."
+  type        = string
+}
+
+variable "key_name" {
+  description = "Key pair name for Windows instances."
+  type        = string
+}
+
+variable "availability_zones" {
+  description = "List of availability zones for instances."
+  type        = list(string)
+  default =  ["us-east-1a", "us-east-1b"] 
+  }
+
+variable "instance_configurations" {
+  description = "Configuration for the instances"
+  type = map(object({
+    instance_count     = number
+    instance_type      = string
+    ami_name           = string
+    availability_zone  = string
+  }))
+}
+
+variable "subnet_id" {
+  description = "Subnet ID to use for instances"
+  type = string
+}
+
+variable "vpc_id" {
+  description = "Subnet ID to use for instances"
+  type = string
+}
+
+variable "app_name"{
+  description = "The name of the application"
+  default = "web" 
+}*/
+
+variable "instance_configurations" {
+  description = "Configuration for the instances"
+  type = map(object({
+    instance_count     = number
+    instance_type      = string
+    ami_name           = string
+    availability_zone  = string
+  }))
+}
+
+locals {
+  app_names = ["web", "app", "backoffice", "database", "alb"]
+  vpc_id = module.vpc.vpc_id  # Assuming module.vpc exposes the VPC ID
+}
+
+locals {
+  application_instances = {
+    web = {
+      instance_count      = 2
+      ami_name            = "Microsoft Windows Server 2019 Base"  # Replace with the desired AMI name
+      instance_type       = "t3a.medium"
+      key_name            = "your-key-name"  # Replace with the key name you want to use
+      availability_zone   = "us-east-1a"  # Specify the availability zone
+    }
+    # Add configurations for other tiers (app, backoffice, database, alb)
+  }
+}
